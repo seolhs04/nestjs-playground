@@ -1,12 +1,25 @@
 import { Module } from '@nestjs/common';
 import { MoviesController } from './movies/movies.controller';
 import { MoviesService } from './movies/movies.service';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/entity/users.entity';
 
 @Module({
-  imports: [],
-  controllers: [MoviesController, UsersController],
-  providers: [MoviesService, UsersService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: '127.0.0.1',
+      port: 3306,
+      username: 'root',
+      password: '1234',
+      database: 'nest_test_db',
+      entities: [User],
+      synchronize: true,
+    }),
+    UsersModule,
+  ],
+  controllers: [MoviesController],
+  providers: [MoviesService],
 })
 export class AppModule {}
