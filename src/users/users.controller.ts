@@ -13,23 +13,23 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly userServices: UsersService) {}
   @Get()
-  getAll() {
-    return this.userServices.getAllUsers();
+  getAllUsers() {
+    return this.userServices.getAll();
   }
   @Get('/:id')
-  getOne(@Param('id') id: number) {
-    return this.userServices.getUser(id);
+  getUser(@Param('id') id: number) {
+    return this.userServices.getOne(id);
   }
   @Post()
   createUser(@Body() data) {
-    return this.userServices.createUser(data);
+    return this.userServices.createOne(data);
   }
   @Delete('/:id')
   deleteUser(@Param('id') id: number) {
-    return this.userServices.deleteUser(id);
+    return this.userServices.deleteOne(id);
   }
   @Put('/:id')
   updateUser(@Param('id') id: number, @Body() data) {
-    return this.userServices.updateUser(id, data);
+    return this.userServices.updateOne(id, data);
   }
 }
