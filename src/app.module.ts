@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { MoviesController } from './movies/movies.controller';
 import { MoviesService } from './movies/movies.service';
 import { UsersModule } from './users/users.module';

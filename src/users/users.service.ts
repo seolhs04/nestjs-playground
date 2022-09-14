@@ -1,36 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-<<<<<<< HEAD
-import { Repository } from 'typeorm/repository/Repository';
-import { Users } from './entity/users.entity';
-=======
 import { Repository } from 'typeorm';
 import { User } from './entity/users.entity';
->>>>>>> branch1
 
 @Injectable()
 export class UsersService {
   constructor(
-<<<<<<< HEAD
-    @InjectRepository(Users)
-    private usersRepository: Repository<Users>,
-  ) {}
-
-  getAllUsers() {
-    throw new NotFoundException('not found');
-  }
-  getUser(id) {
-    throw new NotFoundException('not found');
-  }
-  createUser(data) {
-    throw new NotFoundException('not found');
-  }
-  deleteUser(id) {
-    throw new NotFoundException('not found');
-  }
-  updateUser(id, body) {
-    throw new NotFoundException('not found');
-=======
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {}
@@ -64,6 +39,5 @@ export class UsersService {
       await this.usersRepository.update(id, user);
     }
     return { message: '수정 되었습니다.' };
->>>>>>> branch1
   }
 }
