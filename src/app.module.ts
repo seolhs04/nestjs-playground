@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MoviesController } from './movies/movies.controller';
-import { MoviesService } from './movies/movies.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { TodosModule } from './todos/todos.module';
 import { ApolloDriver } from '@nestjs/apollo';
+import { MoviesModule } from './movies/movies.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -26,8 +26,9 @@ import { ApolloDriver } from '@nestjs/apollo';
     }),
     UsersModule,
     TodosModule,
+    MoviesModule,
   ],
-  controllers: [MoviesController],
-  providers: [MoviesService],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}

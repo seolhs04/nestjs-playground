@@ -1,7 +1,9 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { TodosDto } from './dto/todos.dto';
-import { TodosInput } from './dto/todos.input';
+import { TodosCreate } from './dto/todos-create.dto';
 import { TodosService } from './todos.service';
+import { TodosOutput } from './dto/todos-output.dto';
+import { TodosUpdate } from './dto/todos-update.dto';
 
 @Resolver()
 export class TodosResolver {
@@ -17,13 +19,18 @@ export class TodosResolver {
     return await this.todosService.getOne(id);
   }
 
-  @Mutation(() => TodosDto)
-  async createTodo(@Args('data') data: TodosInput) {
+  @Mutation(() => TodosOutput)
+  async createTodo(@Args('data') data: TodosCreate) {
     return this.todosService.create(data);
   }
 
-  @Mutation(() => String)
+  @Mutation(() => TodosOutput)
   async deleteTodo(@Args('id') id: number) {
     return this.todosService.delete(id);
+  }
+
+  @Mutation(() => TodosOutput)
+  async updateTodo(@Args('id') id: number, @Args('data') data: TodosUpdate) {
+    return this.todosService.update(id, data);
   }
 }
